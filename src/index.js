@@ -67,5 +67,33 @@ function createRandomNumber(minNumber, maxNumber)
  }
 
 // - Eine Funktion mit der wir den benutzernahmen generieren und auf die ergebnisse der anderen funktionen zugreifen
+
+/**
+ * @function createRandomUserName
+ * @description Creates a random username
+ * @param { number } maxNumber 
+ * @returns { string }
+ */
+ function createRandomUserName(maxNumber)
+ {
+     // Wir holen uns die wörter
+     const words = getWords();
+ 
+     // Wir holen uns aus der wortliste die adjektive
+     const adj = words.adjs[ Math.floor(Math.random() * (words.adjs.length - 1)) ];
+ 
+     // Wir holen uns aus der wortliste die nomen
+     const noun = words.nouns[ Math.floor(Math.random() * (words.nouns.length - 1)) ];
+ 
+     // Wir holen uns unsere zufallszahl
+     const randomNumber = createRandomNumber(10000, maxNumber);
+ 
+     // Wir fügen alles zusammen
+     const finalUserName = `${ capitalizeString(adj) }${ capitalizeString(noun) }${ maxNumber !== 0 ? randomNumber : '' }`;
+ 
+     // Wir geben den zusammengesetzten namen zurück
+     return finalUserName;
+ }
 // - Einen export, um die Applikation in einer anderen datei zu nutzen
-exports.createUsername = (maxNumber) => createRandomNumber(maxNumber)
+
+exports.createUsername = (maxNumber) => createRandomUserName(maxNumber)
